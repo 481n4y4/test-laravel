@@ -43,4 +43,11 @@ class AuthController extends Controller
             'user' => $user
         ]);
     }
+
+    public function users() {
+        $data = User::get();
+        return response()->json([
+            'users' => $data
+        ]);
+    }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 
 
 Route::post('/login-jwt', [AuthController::class, 'loginJwt']);
+Route::get('/users', [AuthController::class, 'users']);
 Route::post('/register', [AuthController::class, 'register']);
 
 Route::middleware('auth:api')->group(function () {
