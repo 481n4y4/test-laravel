@@ -85,11 +85,11 @@ class BarangController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
-            'nama_barang'=>'required',
-            'deskripsi'=>'required',
-            'stok'=>'required',
-            'harga'=>'required',
+        $validate = $request->validate([
+            'nama_barang'=>'required|string',
+            'deskripsi'=>'required|text',
+            'stok'=>'required|integer',
+            'harga'=>'required|integer',
         ], [
             'nama_barang.required'=>'nama wajib diisi',
             'deskripsi.required'=>'deskripsi wajib diisi',
@@ -98,6 +98,15 @@ class BarangController extends Controller
         ]);
 
         $data = Barang::where('id_barang', $id)->first();
+
+        // $data->update([
+        //     'nama_barang'=>$request->nama_barang,
+        //     'deskripsi'=>$request->deskripsi,
+        //     'stok'=>$request->stok,
+        //     'harga'=>$request->harga
+        // ]);
+
+        $data->update($validate);
 
         if(!$data) {
             return response()->json([
