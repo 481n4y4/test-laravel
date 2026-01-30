@@ -12,7 +12,7 @@ class BarangController extends Controller
      */
     public function index()
     {
-        $data = Barang::get();
+        $data = Barang::all();
         return response()->json($data);        
     }
 
