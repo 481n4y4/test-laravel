@@ -116,7 +116,7 @@ class BarangController extends Controller
 
         return response()->json([
             'message'=>'data terperbarui',
-            'data'=>$data
+            $data
         ]);
     }
 
