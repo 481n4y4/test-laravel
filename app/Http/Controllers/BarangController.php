@@ -87,7 +87,7 @@ class BarangController extends Controller
     {
         $validate = $request->validate([
             'nama_barang'=>'required|string',
-            'deskripsi'=>'required|text',
+            'deskripsi'=>'required|string',
             'stok'=>'required|integer',
             'harga'=>'required|integer',
         ], [
@@ -105,14 +105,13 @@ class BarangController extends Controller
         //     'stok'=>$request->stok,
         //     'harga'=>$request->harga
         // ]);
-
-        $data->update($validate);
-
         if(!$data) {
             return response()->json([
                 'message'=>'barang tidak ditemukan'
             ], 404);
         };
+
+        $data->update($validate);
 
         return response()->json([
             'message'=>'data terperbarui',
@@ -133,7 +132,7 @@ class BarangController extends Controller
             ], 404);
         };
 
-        $data->destroy();
+        $data->delete();
 
         return response()->json([
             'message'=>'barang terhapus'
